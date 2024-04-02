@@ -32,6 +32,7 @@ class Server extends Command
     {
         $this->setName('worker:server')
             ->addArgument('action', Argument::OPTIONAL, "start|stop|restart|reload|status|connections", 'start')
+            ->addOption('config', 'c', Option::VALUE_OPTIONAL, '配置文件', 'server')
             ->addOption('host', 'H', Option::VALUE_OPTIONAL, 'the host of workerman server.', null)
             ->addOption('port', 'p', Option::VALUE_OPTIONAL, 'the port of workerman server.', null)
             ->addOption('daemon', 'd', Option::VALUE_NONE, 'Run the workerman server in daemon mode.')
@@ -57,8 +58,8 @@ class Server extends Command
             return false;
         }
 
-        $this->config = Config::get('worker_server');
-
+        $config = $input->getOption('config');
+        $this->config = Config::get('worker_' . $config);
         if ('start' == $action) {
             $output->writeln('Starting Workerman server...');
         }

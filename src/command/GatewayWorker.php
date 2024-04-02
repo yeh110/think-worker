@@ -1,16 +1,6 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2018 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
-
+declare (strict_types=1);
 namespace think\worker\command;
-
 use GatewayWorker\BusinessWorker;
 use GatewayWorker\Gateway;
 use GatewayWorker\Register;
@@ -21,7 +11,6 @@ use think\console\input\Option;
 use think\console\Output;
 use think\facade\Config;
 use Workerman\Worker;
-
 /**
  * Worker 命令行类
  */
@@ -31,6 +20,7 @@ class GatewayWorker extends Command
     {
         $this->setName('worker:gateway')
             ->addArgument('action', Argument::OPTIONAL, "start|stop|restart|reload|status|connections", 'start')
+            ->addOption('config', 'c', Option::VALUE_OPTIONAL, '配置文件', 'worker')
             ->addOption('host', 'H', Option::VALUE_OPTIONAL, 'the host of workerman server.', null)
             ->addOption('port', 'p', Option::VALUE_OPTIONAL, 'the port of workerman server.', null)
             ->addOption('daemon', 'd', Option::VALUE_NONE, 'Run the workerman server in daemon mode.')
@@ -59,8 +49,8 @@ class GatewayWorker extends Command
         if ('start' == $action) {
             $output->writeln('Starting GatewayWorker server...');
         }
-
-        $option = Config::get('gateway_worker');
+        $config = $input->getOption('config');
+        $option = Config::get('gateway_' . $config);
 
         if ($input->hasOption('host')) {
             $host = $input->getOption('host');
