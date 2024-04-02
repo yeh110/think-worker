@@ -1,15 +1,6 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2018 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
 
-namespace think\worker\command;
+namespace yeh110\worker\command;
 
 use think\console\Command;
 use think\console\Input;
@@ -18,7 +9,7 @@ use think\console\input\Option;
 use think\console\Output;
 use think\facade\App;
 use think\facade\Config;
-use think\worker\Server as WorkerServer;
+use yeh110\worker\Server as WorkerServer;
 use Workerman\Worker;
 
 /**
@@ -58,7 +49,7 @@ class Server extends Command
             return false;
         }
 
-        $config = $input->getOption('config');
+        $config       = $input->getOption('config');
         $this->config = Config::get('worker_' . $config);
         if ('start' == $action) {
             $output->writeln('Starting Workerman server...');
@@ -66,7 +57,7 @@ class Server extends Command
 
         // 自定义服务器入口类
         if (!empty($this->config['worker_class'])) {
-            $class = (array) $this->config['worker_class'];
+            $class = (array)$this->config['worker_class'];
 
             foreach ($class as $server) {
                 $this->startServer($server);
@@ -78,7 +69,7 @@ class Server extends Command
         }
 
         if (!empty($this->config['socket'])) {
-            $socket            = $this->config['socket'];
+            $socket = $this->config['socket'];
             list($host, $port) = explode(':', $socket);
         } else {
             $host     = $this->getHost();
@@ -132,7 +123,7 @@ class Server extends Command
         if (class_exists($class)) {
             $worker = new $class;
             if (!$worker instanceof WorkerServer) {
-                $this->output->writeln("<error>Worker Server Class Must extends \\think\\worker\\Server</error>");
+                $this->output->writeln("<error>Worker Server Class Must extends \\yeh110\\worker\\Server</error>");
             }
         } else {
             $this->output->writeln("<error>Worker Server Class Not Exists : {$class}</error>");

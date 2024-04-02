@@ -1,15 +1,6 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2018 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
 
-namespace think\worker;
+namespace yeh110\worker;
 
 use think\App;
 use think\exception\Handle;
@@ -24,8 +15,8 @@ class Application extends App
     /**
      * 处理Worker请求
      * @access public
-     * @param  \Workerman\Connection\TcpConnection   $connection
-     * @param  void
+     * @param \Workerman\Connection\TcpConnection $connection
+     * @param void
      */
     public function worker($connection)
     {
@@ -67,7 +58,7 @@ class Application extends App
             } else {
                 $connection->close($content);
             }
-        } catch (HttpException | \Exception | \Throwable $e) {
+        } catch (HttpException|\Exception|\Throwable $e) {
             $this->exception($connection, $e);
         }
     }

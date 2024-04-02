@@ -16,13 +16,13 @@
     },
     "autoload": {
         "psr-4": {
-            "think\\worker\\": "src"
+            "yeh110\\worker\\": "src"
         }
     },
     "extra": {
         "think":{
             "services":[
-                "think\\worker\\Service"
+                "yeh110\\worker\\Service"
             ],
             "config":{
                 "worker": "src/config/worker.php",

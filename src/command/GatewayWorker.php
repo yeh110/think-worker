@@ -1,6 +1,8 @@
 <?php
 declare (strict_types=1);
-namespace think\worker\command;
+
+namespace yeh110\worker\command;
+
 use GatewayWorker\BusinessWorker;
 use GatewayWorker\Gateway;
 use GatewayWorker\Register;
@@ -11,6 +13,7 @@ use think\console\input\Option;
 use think\console\Output;
 use think\facade\Config;
 use Workerman\Worker;
+
 /**
  * Worker 命令行类
  */
@@ -64,15 +67,15 @@ class GatewayWorker extends Command
             $port = !empty($option['port']) ? $option['port'] : '2347';
         }
 
-        $this->start($host, (int) $port, $option);
+        $this->start($host, (int)$port, $option);
     }
 
     /**
      * 启动
      * @access public
-     * @param  string   $host 监听地址
-     * @param  integer  $port 监听端口
-     * @param  array    $option 参数
+     * @param string $host 监听地址
+     * @param integer $port 监听端口
+     * @param array $option 参数
      * @return void
      */
     public function start(string $host, int $port, array $option = [])
@@ -101,7 +104,7 @@ class GatewayWorker extends Command
     /**
      * 启动register
      * @access public
-     * @param  string   $registerAddress
+     * @param string $registerAddress
      * @return void
      */
     public function register(string $registerAddress)
@@ -113,8 +116,8 @@ class GatewayWorker extends Command
     /**
      * 启动businessWorker
      * @access public
-     * @param  string   $registerAddress registerAddress
-     * @param  array    $option 参数
+     * @param string $registerAddress registerAddress
+     * @param array $option 参数
      * @return void
      */
     public function businessWorker(string $registerAddress, array $option = [])
@@ -130,10 +133,10 @@ class GatewayWorker extends Command
     /**
      * 启动gateway
      * @access public
-     * @param  string  $registerAddress registerAddress
-     * @param  string  $host 服务地址
-     * @param  integer $port 监听端口
-     * @param  array   $option 参数
+     * @param string $registerAddress registerAddress
+     * @param string $host 服务地址
+     * @param integer $port 监听端口
+     * @param array $option 参数
      * @return void
      */
     public function gateway(string $registerAddress, string $host, int $port, array $option = [])
@@ -174,8 +177,8 @@ class GatewayWorker extends Command
     /**
      * 设置参数
      * @access protected
-     * @param  Worker $worker Worker对象
-     * @param  array  $option 参数
+     * @param Worker $worker Worker对象
+     * @param array $option 参数
      * @return void
      */
     protected function option(Worker $worker, array $option = [])

@@ -1,14 +1,6 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2018 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
-namespace think\worker;
+
+namespace yeh110\worker;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -34,9 +26,9 @@ class Http extends Server
     /**
      * 架构函数
      * @access public
-     * @param  string $host 监听地址
-     * @param  int    $port 监听端口
-     * @param  array  $context 参数
+     * @param string $host 监听地址
+     * @param int $port 监听端口
+     * @param array $context 参数
      */
     public function __construct($host, $port, $context = [])
     {
@@ -73,13 +65,13 @@ class Http extends Server
     public function setMonitor($interval = 2, $path = [])
     {
         $this->monitor['interval'] = $interval;
-        $this->monitor['path']     = (array) $path;
+        $this->monitor['path']     = (array)$path;
     }
 
     /**
      * 设置参数
      * @access public
-     * @param  array    $option 参数
+     * @param array $option 参数
      * @return void
      */
     public function option(array $option)
@@ -95,7 +87,7 @@ class Http extends Server
     /**
      * onWorkerStart 事件回调
      * @access public
-     * @param  \Workerman\Worker $worker
+     * @param \Workerman\Worker $worker
      * @return void
      */
     public function onWorkerStart($worker)
@@ -114,7 +106,7 @@ class Http extends Server
         $this->app->workerman = $worker;
 
         $this->app->bind([
-            'think\Cookie' => Cookie::class,
+            'yeh110\Cookie' => Cookie::class,
         ]);
 
         if (0 == $worker->id && $this->monitor) {
@@ -146,8 +138,8 @@ class Http extends Server
     /**
      * onMessage 事件回调
      * @access public
-     * @param  TcpConnection $connection
-     * @param  mixed         $data
+     * @param TcpConnection $connection
+     * @param mixed $data
      * @return void
      */
     public function onMessage($connection, $data)
@@ -167,8 +159,8 @@ class Http extends Server
     /**
      * 访问资源文件
      * @access protected
-     * @param  TcpConnection $connection
-     * @param  string        $file 文件名
+     * @param TcpConnection $connection
+     * @param string $file 文件名
      * @return string
      */
     protected function sendFile($connection, $file)
@@ -216,7 +208,7 @@ class Http extends Server
     /**
      * 获取文件类型信息
      * @access protected
-     * @param  string $filename 文件名
+     * @param string $filename 文件名
      * @return string
      */
     protected function getMimeType(string $filename)

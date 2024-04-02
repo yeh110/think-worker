@@ -1,14 +1,5 @@
 <?php
 // +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2018 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
-// +----------------------------------------------------------------------
 // | Workerman设置 仅对 php think worker:gateway 指令有效
 // +----------------------------------------------------------------------
 return [
@@ -26,7 +17,7 @@ return [
     'registerAddress'       => '127.0.0.1:1236',
 
     // Gateway配置
-    'name'                  => 'thinkphp',
+    'name'                  => 'GatewayServer',
     'count'                 => 1,
     'lanIp'                 => '127.0.0.1',
     'startPort'             => 2000,
@@ -37,7 +28,7 @@ return [
 
     // BusinsessWorker配置
     'businessWorker'        => [
-        'name'         => 'BusinessWorker',
+        'name'         => 'BusinessGatewayWorker',
         'count'        => 1,
         'eventHandler' => '\think\worker\Events',
     ],
