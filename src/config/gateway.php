@@ -30,7 +30,7 @@ return [
     'businessWorker'        => [
         'name'         => 'BusinessGatewayWorker',
         'count'        => 1,
-        'eventHandler' => '\think\worker\Events',
+        'eventHandler' => '\yeh110\worker\Events',
     ],
 
 ];

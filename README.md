@@ -63,13 +63,13 @@ return [
 ];
 ~~~
 
-也支持使用自定义类作为Worker服务入口文件类。例如，我们可以创建一个服务类（必须要继承 think\worker\Server），然后设置属性和添加回调方法
+也支持使用自定义类作为Worker服务入口文件类。例如，我们可以创建一个服务类（必须要继承 yeh110\worker\Server），然后设置属性和添加回调方法
 
 ~~~
 <?php
 namespace app\http;
 
-use think\worker\Server;
+use yeh110\worker\Server;
 
 class Worker extends Server
 {
